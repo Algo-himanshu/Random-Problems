@@ -1,0 +1,21 @@
+public class printLongestCommonSubSequence {
+    static String ss = "";
+    public static void main(String[] args) {
+        String s1="abcde";
+        String s2="ace";
+        printlongestCommonSubsequenceRec(s1,s2);
+        }
+      static void printlongestCommonSubsequenceRec(String s1,String s2)    
+      {
+        String dp[][] = new String[s1.length()+1][s2.length()+1];    //String MAtrix
+        for(int i = 0 ; i < s1.length()+1 ; i++){for(int j = 0 ; j < s2.length()+1 ; j++){dp[i][j] = "";}}   //initialinsing null
+
+        for(int i = 1 ; i < s1.length()+1 ; i++){
+          for(int j = 1 ; j < s2.length()+1 ; j++){
+          if(s1.charAt(i-1)==s2.charAt(j-1)) {ss+=s1.charAt(i-1); dp[i][j]=ss;}
+          else dp[i][j] = dp[i-1][j].length()>dp[i][j-1].length()  ? dp[i-1][j] : dp[i][j-1];
+        }
+      }
+      System.out.println(dp[s1.length()][s2.length()]);
+      }   
+}
